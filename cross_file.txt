@@ -1,0 +1,45 @@
+[binaries]
+c 		= '/usr/bin/arm-frc-linux-gnueabi-gcc'
+cpp 	= '/usr/bin/arm-frc-linux-gnueabi-g++'
+size 	= '/usr/bin/arm-frc-linux-gnueabi-size'
+strings = '/usr/bin/arm-frc-linux-gnueabi-strings'
+gdb		= '/usr/bin/arm-frc-linux-gnueabi-gdb'
+ar 		= '/usr/arm-frc-linux-gnueabi/bin/ar'
+as      = '/usr/arm-frc-linux-gnueabi/bin/as'
+strip 	= '/usr/arm-frc-linux-gnueabi/bin/strip'
+ld      = '/usr/arm-frc-linux-gnueabi/bin/ld'
+objdump = '/usr/arm-frc-linux-gnueabi/bin/objdump'
+objcopy = '/usr/arm-frc-linux-gnueabi/bin/objcopy'
+pkgconfig = '/usr/bin/pkg-config'
+
+
+
+[properties]
+
+cpp_args = [
+	'-std=c++1y',
+	'-Wformat=2',
+	'-Wall',
+	'-Wextra',
+	'-Werror',
+	'-pedantic',
+	'-Wno-psabi',
+	'-Wno-unused-parameter',
+	'-pedantic',
+	'-fPIC',
+	]
+
+cpp_flags_debug = [
+	'-O0',
+	'-g3',
+	]
+
+cpp_flags_release = [
+	'-O3',
+	]
+
+[host_machine]
+system = 'linux'
+cpu_family = 'arm'
+cpu = 'cortex‑a9'
+endian = 'little'
