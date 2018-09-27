@@ -5,8 +5,6 @@ import re
 import os.path
 import wget
 
-print('Downloading Latest WPI Library...')
-
 plugins_page_url = 'http://first.wpi.edu/FRC/roborio/release/eclipse/plugins/'
 plugins_page = urllib.request.urlopen(plugins_page_url);
 plugins_page_content = plugins_page.read().splitlines()
