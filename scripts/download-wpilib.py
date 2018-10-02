@@ -6,7 +6,7 @@ import os.path
 import wget
 
 def install_package(url, name):
-	if os.path.isfile('build/' + name) == False:
+	if os.path.isfile(os.environ['MESON_BUILD_ROOT'] + name) == False:
 		print('Downloading Core Plugin...')
 		wget.download(url, out='build/' + name)
 		print()
