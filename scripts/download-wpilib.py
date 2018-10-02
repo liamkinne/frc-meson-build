@@ -47,4 +47,7 @@ print('Found Core Plugin: {}'.format(core_url))
 print('Found C++ Plugin: {}'.format(cpp_url))
 
 download_package(core_url, core_filename)
+extract_package(core_filename)
+
 download_package(cpp_url, cpp_filename)
+extract_package(cpp_filename)
