@@ -4,15 +4,23 @@ import urllib.request
 import re
 import os.path
 import wget
+import subprocess
 
-def install_package(url, name):
-	if os.path.isfile(os.environ['MESON_BUILD_ROOT'] + name) == False:
+def get_full_path(name):
+	return os.environ['MESON_BUILD_ROOT'] + '/' + name 
+
+def download_package(url, name):
+	if os.path.isfile(get_full_path(name)) == False:
 		print('Downloading Core Plugin...')
-		wget.download(url, out='build/' + name)
+		#wget.download(url, out='build/' + name)
 		print()
 	else:
-		print('Latest Core Plugin Already Downloaded')
- 
+		print('{} Already Downloaded'.format(name))
+
+def extract_package(name):
+	print('Extracting {}'.format(name))
+	subprocess.call(['mkdir','--parents', os.environ['MESON_BUILD_ROOT'] + '/wpilib/'])
+	subprocess.call(['unzip', '-qo', get_full_path(name), '-d',  os.environ['MESON_BUILD_ROOT'] + '/wpilib/' + name])
 
 plugins_page_url = 'http://first.wpi.edu/FRC/roborio/release/eclipse/plugins/'
 plugins_page = urllib.request.urlopen(plugins_page_url);
@@ -38,5 +46,5 @@ cpp_url = plugins_page_url + cpp_filename
 print('Found Core Plugin: {}'.format(core_url))
 print('Found C++ Plugin: {}'.format(cpp_url))
 
-install_package(core_url, core_filename)
-install_package(cpp_url, cpp_filename)
+download_package(core_url, core_filename)
+download_package(cpp_url, cpp_filename)
