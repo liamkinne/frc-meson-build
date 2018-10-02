@@ -5,6 +5,15 @@ import re
 import os.path
 import wget
 
+def install_package(url, name):
+	if os.path.isfile('build/' + name) == False:
+		print('Downloading Core Plugin...')
+		wget.download(url, out='build/' + name)
+		print()
+	else:
+		print('Latest Core Plugin Already Downloaded')
+ 
+
 plugins_page_url = 'http://first.wpi.edu/FRC/roborio/release/eclipse/plugins/'
 plugins_page = urllib.request.urlopen(plugins_page_url);
 plugins_page_content = plugins_page.read().splitlines()
@@ -29,16 +38,5 @@ cpp_url = plugins_page_url + cpp_filename
 print('Found Core Plugin: {}'.format(core_url))
 print('Found C++ Plugin: {}'.format(cpp_url))
 
-if os.path.isfile('build/' + core_filename) == False:
-	print('Downloading Core Plugin...')
-	wget.download(core_url, out='build/' + core_filename)
-	print()
-else:
-	print('Latest Core Plugin Already Downloaded')
-
-if os.path.isfile('build/' + cpp_filename) == False:
-	print('Downloading C++ Plugin..')
-	wget.download(cpp_url, out='build/' + cpp_filename)
-	print()
-else:
-	print('Latest C++ Plugin Already Downloaded')
+install_package(core_url, core_filename)
+install_package(cpp_url, cpp_filename)
