@@ -6,21 +6,23 @@ import os.path
 import wget
 import subprocess
 
+wpilib_folder = os.environ['MESON_BUILD_ROOT'] + '/wpilib/'
+
 def get_full_path(name):
 	return os.environ['MESON_BUILD_ROOT'] + '/' + name 
 
 def download_package(url, name):
 	if os.path.isfile(get_full_path(name)) == False:
 		print('Downloading Core Plugin...')
-		#wget.download(url, out='build/' + name)
+		wget.download(url, out='build/' + name)
 		print()
 	else:
 		print('{} Already Downloaded'.format(name))
 
 def extract_package(name):
 	print('Extracting {}'.format(name))
-	subprocess.call(['mkdir','--parents', os.environ['MESON_BUILD_ROOT'] + '/wpilib/'])
-	subprocess.call(['unzip', '-qo', get_full_path(name), '-d',  os.environ['MESON_BUILD_ROOT'] + '/wpilib/' + name])
+	subprocess.call(['mkdir','--parents', wpilib_folder])
+	subprocess.call(['unzip', '-qo', get_full_path(name), '-d',  wpilib_folder + name])
 
 plugins_page_url = 'http://first.wpi.edu/FRC/roborio/release/eclipse/plugins/'
 plugins_page = urllib.request.urlopen(plugins_page_url);
@@ -49,5 +51,9 @@ print('Found C++ Plugin: {}'.format(cpp_url))
 download_package(core_url, core_filename)
 extract_package(core_filename)
 
+subprocess.call(['unzip', '-qo', wpilib_folder + core_filename + '/resources/common.zip', '-d', wpilib_folder])
+
 download_package(cpp_url, cpp_filename)
 extract_package(cpp_filename)
+
+subprocess.call(['unzip', '-qo', wpilib_folder + cpp_filename + '/resources/cpp.zip', '-d', wpilib_folder])
