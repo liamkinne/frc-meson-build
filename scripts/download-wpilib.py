@@ -18,7 +18,7 @@ def download_package(url, name):
 		wget.download(url, out='build/' + name)
 		print()
 	else:
-		print('{} Already Downloaded'.format(name))
+		print('Already Downloaded: {} '.format(name))
 
 def extract_package(name):
 	print('Extracting {}'.format(name))
