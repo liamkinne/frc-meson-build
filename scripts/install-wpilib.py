@@ -3,7 +3,6 @@
 import urllib.request
 import re
 import os.path
-import wget
 import subprocess
 
 wpilib_folder = os.environ['MESON_BUILD_ROOT'] + '/wpilib/'
@@ -15,7 +14,8 @@ def get_full_path(name):
 def download_package(url, name):
 	if os.path.isfile(get_full_path(name)) == False:
 		print('Downloading Core Plugin...')
-		wget.download(url, out='build/' + name)
+		subprocess.call(['wget', '-r', '-nd', '--progress=bar', '--directory-prefix='+os.environ['MESON_BUILD_ROOT'], url])
+		#wget.download(url, out='build/' + name)
 		print()
 	else:
 		print('Already Downloaded: {} '.format(name))
