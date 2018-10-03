@@ -41,10 +41,10 @@ def get_latest_version():
 	return versions[-1]
 
 
-version_latest = get_latest_version();
+version = get_latest_version();
 
-core_filename = 'edu.wpi.first.wpilib.plugins.core_{}.jar'.format(version_latest)
-cpp_filename = 'edu.wpi.first.wpilib.plugins.cpp_{}.jar'.format(version_latest)
+core_filename = 'edu.wpi.first.wpilib.plugins.core_{}.jar'.format(version)
+cpp_filename = 'edu.wpi.first.wpilib.plugins.cpp_{}.jar'.format(version)
 
 print('Found Core Plugin: {}'.format(core_filename))
 print('Found C++ Plugin: {}'.format(cpp_filename))
@@ -62,3 +62,6 @@ extract_package(cpp_filename)
 
 subprocess.call(['unzip', '-qo', wpilib_folder + cpp_filename + '/resources/cpp.zip', '-d', wpilib_folder])
 subprocess.call(['rm', '-r', wpilib_folder + cpp_filename])
+
+with open(wpilib_folder + 'version', 'w') as file:
+	file.write(version)
