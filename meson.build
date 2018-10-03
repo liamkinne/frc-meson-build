@@ -8,8 +8,8 @@ executable(
 	'src/Robot.cpp',
 )
 
-run_target('download_wpilib',
-	command: ['scripts/download-wpilib.py']
+run_target('update_wpilib',
+	command: ['scripts/install-wpilib.py']
 )
 
-meson.add_postconf_script('scripts/download-wpilib.py')
+meson.add_postconf_script('scripts/install-wpilib.py')

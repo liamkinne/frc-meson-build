@@ -49,6 +49,8 @@ cpp_filename = 'edu.wpi.first.wpilib.plugins.cpp_{}.jar'.format(version_latest)
 print('Found Core Plugin: {}'.format(core_filename))
 print('Found C++ Plugin: {}'.format(cpp_filename))
 
+subprocess.call(['rm', '-r', wpilib_folder])
+
 download_package(plugins_page_url + core_filename, core_filename)
 extract_package(core_filename)
 
