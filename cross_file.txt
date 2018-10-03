@@ -36,6 +36,7 @@ cpp_flags_debug = [
 
 cpp_flags_release = [
 	'-O3',
+	'-g'
 	]
 
 [host_machine]
