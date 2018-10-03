@@ -5,7 +5,7 @@ import re
 import os.path
 import subprocess
 
-wpilib_folder = os.environ['MESON_BUILD_ROOT'] + '/wpilib/'
+wpilib_folder = os.environ['MESON_BUILD_ROOT'] + '/../wpilib/'
 plugins_page_url = 'http://first.wpi.edu/FRC/roborio/release/eclipse/plugins/'
 
 def get_full_path(name):
@@ -49,7 +49,7 @@ cpp_filename = 'edu.wpi.first.wpilib.plugins.cpp_{}.jar'.format(version)
 print('Found Core Plugin: {}'.format(core_filename))
 print('Found C++ Plugin: {}'.format(cpp_filename))
 
-subprocess.call(['rm', '-rf', wpilib_folder])
+subprocess.call(['rm', '-rf', wpilib_folder +'/*'])
 
 download_package(plugins_page_url + core_filename, core_filename)
 extract_package(core_filename)
